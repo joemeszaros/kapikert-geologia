@@ -79,109 +79,148 @@
 	<div id="footer"></div>
 	<script>
 
-		const pois = [
+		var greenIcon = L.icon({
+			iconUrl: 'icons/blue-icon.png',
+			shadowUrl: 'icons/icon-shadow.png',
+			iconSize: [25, 41],
+			iconAnchor: [12, 41],
+			popupAnchor: [1, -34],
+			tooltipAnchor: [16, -28],
+			shadowSize: [41, 41]
+		});
+
+		var redIcon = L.icon({
+			iconUrl: 'icons/red-icon.png',
+			shadowUrl: 'icons/icon-shadow.png',
+			iconSize: [25, 41],
+			iconAnchor: [12, 41],
+			popupAnchor: [1, -34],
+			tooltipAnchor: [16, -28],
+			shadowSize: [41, 41]
+		});
+
+		const rock_samples = [
 			{
-				placeId: 1, name: 'Forrás', lat: 48.53975, long: 20.638967, imageCount: 3, images: [
+				placeId: 1, type: "rock", name: 'Víznyelő', lat: 48.53975, long: 20.638967, images: [
 					{ ids: [1, 2, 3, 4, 5, 6, 7], description: "A víznyelő alja" },
 					{ ids: [8, 9, 10, 11, 12, 13, 14], description: "Víznyelő felett 10 méterrel hegyoldalon" }
 				]
 			},
 			{
-				placeId: 2, name: 'Szekérút mellett', lat: 48.538983, long: 20.6402, images: [
+				placeId: 2, type: "rock", name: 'Szekérút mellett', lat: 48.538983, long: 20.6402, images: [
 					{ ids: [1, 2, 3, 4], description: "Szekérút mellett" },
 				]
 			},
 			{
-				placeId: 3, name: 'Dagonya előtt 1', lat: 48.538683, long: 20.6396, images: [
-					{ ids: [1, 2], description: "Szekérút mellett" },
+				placeId: 3, type: "rock", name: 'Dagonya előtt 1', lat: 48.538683, long: 20.6396, images: [
+					{ ids: [1, 2], description: "Dagonya előtt 1" },
 				]
 			},
 			{
-				placeId: 4, name: 'Dagonya előtt 2', lat: 48.53845, long: 20.639033, images: [
-					{ ids: [1, 2], description: "Szekérút mellett" },
+				placeId: 4, type: "rock", name: 'Dagonya előtt 2', lat: 48.53845, long: 20.639033, images: [
+					{ ids: [1, 2], description: "Dagonya előtt 2" },
 				]
 			},
 			{
-				placeId: 5, name: 'Dagonya után', lat: 48.538067, long: 20.638833, images: [
+				placeId: 5, type: "rock", name: 'Dagonya után', lat: 48.538067, long: 20.638833, images: [
 					{ ids: [1, 2], description: "Dagonya után" },
 				]
 			},
 			{
-				placeId: 6, name: 'Vízszintes terep után', lat: 48.537717, long: 20.6389, images: [
-					{ ids: [1], description: "Dagonya után" },
+				placeId: 6, type: "rock", name: 'Vízszintes terep után', lat: 48.537717, long: 20.6389, images: [
+					{ ids: [1], description: "Vízszintes terep után" },
 				]
 			},
 			{
-				placeId: 7, name: 'Dagonya után', lat: 48.53745, long: 20.63865, images: [
-					{ ids: [1, 2], description: "Dagonya után" },
+				placeId: 7, type: "rock", name: '', lat: 48.53745, long: 20.63865, images: [
+					{ ids: [1, 2], description: "" },
 				]
 			},
 			{
-				placeId: 8, name: 'Dagonya után', lat: 48.536417, long: 20.638417, images: [
-					{ ids: [1, 2], description: "Dagonya után" },
+				placeId: 8, type: "rock", name: '', lat: 48.536417, long: 20.638417, images: [
+					{ ids: [1, 2], description: "" },
 				]
 			},
 			{
-				placeId: 9, name: 'Dagonya után', lat: 48.535567, long: 20.638, images: [
-					{ ids: [1, 2], description: "Dagonya után" },
+				placeId: 9, type: "rock", name: '', lat: 48.535567, long: 20.638, images: [
+					{ ids: [1, 2], description: "" },
 				]
 			},
 			{
-				placeId: 10, name: 'Dagonya után', lat: 48.535833, long: 20.637983, images: [
-					{ ids: [1, 2], description: "Dagonya után" },
+				placeId: 10, type: "rock", name: '', lat: 48.535833, long: 20.637983, images: [
+					{ ids: [1, 2], description: "" },
 				]
 			},
 			{
-				placeId: 11, name: 'Dagonya után', lat: 48.535367, long: 20.63785, images: [
-					{ ids: [1, 2], description: "Dagonya után" },
+				placeId: 11, type: "rock", name: '', lat: 48.535367, long: 20.63785, images: [
+					{ ids: [1, 2], description: "" },
 				]
 			},
 			{
-				placeId: 12, name: '12', lat: 48.535333, long: 20.6378, images: [
-					{ ids: [1, 2], description: "Dagonya után" },
+				placeId: 12, type: "rock", name: '', lat: 48.535333, long: 20.6378, images: [
+					{ ids: [1, 2], description: "" },
 				]
 			},
 			{
-				placeId: 13, name: '13', lat: 48.53525, long: 20.637683, images: [
-					{ ids: [1, 2], description: "Dagonya után" },
+				placeId: 13, type: "rock", name: '', lat: 48.53525, long: 20.637683, images: [
+					{ ids: [1, 2], description: "" },
 				]
 			},
 			{
-				placeId: 14, name: 'HSZF bontási törmelék', lat: 48.535082, long: 20.637198, images: [
-					{ ids: [1, 2], description: "Dagonya után" },
+				placeId: 14, type: "rock", name: 'HSZF bontási törmelék', lat: 48.535082, long: 20.637198, images: [
+					{ ids: [1, 2], description: "HSZF bontási törmelék" },
 				]
 			},
 			{
-				placeId: 15, name: 'Rico bontási törmelék', lat: 48.534956, long: 20.637774, images: [
-					{ ids: [1, 2], description: "Dagonya után" },
+				placeId: 15, type: "rock", name: 'Rico bontási törmelék', lat: 48.534956, long: 20.637774, images: [
+					{ ids: [1, 2], description: "Rico bontási törmelék" },
 				]
 			},
 			{
-				placeId: 16, name: 'Mocsolya völgy', lat: 48.534130, long: 20.637447, images: [
+				placeId: 16, type: "rock", name: 'Mocsolya völgy', lat: 48.534130, long: 20.637447, images: [
 					{ ids: [1, 2], description: "déli oldal" },
 				]
 			},
 			{
-				placeId: 17, name: 'Mocsolya völgy', lat: 48.534, long: 20.638817, images: [
-					{ ids: [1, 2], description: "déli oldal" },
+				placeId: 17, type: "rock", name: 'Mocsolya völgy', lat: 48.534, long: 20.638817, images: [
+					{ ids: [1, 2], description: "Déli oldal" },
 				]
 			},
 			{
-				placeId: 18, name: 'Mocsolya völgy', lat: 48.53365, long: 20.6413, images: [
-					{ ids: [1, 2], description: "északi vagy déli oldal" },
+				placeId: 18, type: "rock", name: 'Mocsolya völgy', lat: 48.53365, long: 20.6413, images: [
+					{ ids: [1, 2], description: "Északi vagy déli oldal" },
 				]
 			},
 			{
-				placeId: 19, name: 'Mocsolya völgy', lat: 48.533533, long: 20.642167, images: [
-					{ ids: [1, 2], description: "északi vagy déli oldal" },
+				placeId: 19, type: "rock", name: 'Mocsolya völgy', lat: 48.533533, long: 20.642167, images: [
+					{ ids: [1, 2], description: "Északi vagy déli oldal" },
 				]
 			},
 			{
-				placeId: 19, name: 'Mocsolya völgy', lat: 48.532833, long: 20.643617, images: [
-					{ ids: [1, 2], description: "északi oldal" },
+				placeId: 19, type: "rock", name: 'Mocsolya völgy', lat: 48.532833, long: 20.643617, images: [
+					{ ids: [1, 2], description: "Északi oldal" },
 				]
 			},
-
+			{
+				placeId: 20, type: "bedding", name: 'Kőzetréteg völgyperemen', lat: 48.535330, long: 20.6378, images: [
+					{ ids: [1], description: "Kőzetréteg völgyperemen" },
+				]
+			},
+			{
+				placeId: 21, type: "bedding", name: 'HSZF-től balra', lat: 48.535140, long: 20.637310, images: [
+					{ ids: [1], description: "HSZF-től balra" },
+				]
+			},
+			{
+				placeId: 22, type: "bedding", name: 'HSZF felett jobbra', lat: 48.535130, long: 20.637428, images: [
+					{ ids: [1], description: "HSZF felett jobbra" },
+				]
+			},
+			{
+				placeId: 23, type: "bedding", name: '1. barlang bejárata', lat: 48.535059, long: 20.637745, images: [
+					{ ids: [1], description: "1. barlang bejárata" },
+				]
+			}
 		];
 
 		const map = L.map('map').setView([48.53799, 20.64044], 15);
@@ -197,39 +236,49 @@
 		}).addTo(map);
 
 		function onMarkerClick(e) {
-			let poi = pois.find(poi => e.latlng.lat === poi.lat && e.latlng.lng === poi.long);
-			document.getElementById("footer").innerHTML = renderFooter(poi.placeId, poi.images);
+			let poi = rock_samples.find(poi => e.latlng.lat === poi.lat && e.latlng.lng === poi.long);
+			document.getElementById("footer").innerHTML = renderFooter(poi.placeId, poi.type, poi.images);
 		};
 
-		function renderImages(placeId, imageClass, images) {
+		function renderImages(placeId, imageClass, poiType, images) {
 			return `
 		${images.map(imageSet =>
 				imageSet.ids.map(imageId =>
-					`<figure><img class="${imageClass}" src="./images/kozet/${placeId}/${imageId}.JPG"><figcaption>${imageSet.description}</figcaption></figure>`
+					`<figure><img class="${imageClass}" src="./images/${poiType}/${placeId}/${imageId}.JPG"><figcaption>${imageSet.description}</figcaption></figure>`
 				).join('')
 			).join('')}
 		`
 		}
 
-		function renderFooter(placeId, images) {
-			return `<a href="viewer.html?count=2">
+		const fold = (reducer, init, xs) => {
+			let acc = init;
+			for (const x of xs) {
+				acc = reducer(acc, x);
+			}
+			return acc;
+		};
+
+		const countImages = images => fold((acc, image) => acc + image.ids.length, 0, images);
+
+		function renderFooter(placeId, poiType, images) {
+			return `<a href="viewer.html?count=${countImages(images)}&id=${placeId}&type=${poiType}">
 <div class="imageContainer">
-		${renderImages(placeId, "footer-images", images)}
+		${renderImages(placeId, "footer-images", poiType, images)}
  </div></a>
 `;
 		};
 
-		function renderPopup(placeId, name, lat, long) {
+		function renderPopup(placeId, name, poiType, lat, long) {
 			return `
 <ul class="popup_container">
-	${name} (${lat}, ${long})
+	${placeId}. ${name} (${poiType == "rock" ? "kőzet" : "kőzetréteg"}): (${lat}, ${long})
  </ul>
 `;
 		};
 
 
-		pois.forEach(function (poi) {
-			const marker = L.marker([poi.lat, poi.long]).addTo(map).bindPopup(renderPopup(poi.placeId, poi.name, poi.lat, poi.long));
+		rock_samples.forEach(function (poi) {
+			const marker = L.marker([poi.lat, poi.long], { icon: poi.type == "rock" ? greenIcon : redIcon }).addTo(map).bindPopup(renderPopup(poi.placeId, poi.name, poi.type, poi.lat, poi.long));
 			marker.on('click', onMarkerClick);
 		});
 

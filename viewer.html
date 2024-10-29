@@ -20,8 +20,10 @@
   const range = (start, end) => Array.from('_'.repeat(end - start + 1), (_ ,i) => start + i);
   const getElm = (id) => document.getElementById(id)
   const urlParams = new URLSearchParams(window.location.search);
-  const cnt = urlParams.get('count')
-  const src = "https://github.com/joemeszaros/kapikert-geologia/blob/main/images/kozet/1/"
+  const cnt = urlParams.get('count');
+  const placeId = urlParams.get('id');
+  const poiType = urlParams.get('type');
+  const src = `https://github.com/joemeszaros/kapikert-geologia/blob/main/images/${poiType}/${placeId}/`
 
   let i = 0, 
       img = [], 
