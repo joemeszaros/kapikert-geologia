@@ -238,22 +238,25 @@
 
 		var errorOverlayUrl = 'https://cdn-icons-png.flaticon.com/512/110/110686.png';
 
+		var map88 = L.layerGroup()
+		var map100k = L.layerGroup()
+
 		var imageOverlay88 = L.imageOverlay('images/overlay_88.jpg', L.latLngBounds([[48.55078, 20.62042], [48.52732, 20.65700]]), {
 			opacity: 0.4,
 			errorOverlayUrl: errorOverlayUrl,
 			alt: 'Földtani térkép 1988',
 			interactive: true
-		}).addTo(map);
+		}).addTo(map88);
 		
 		var imageOverlay100k = L.imageOverlay('images/overay_100k.png', L.latLngBounds([[48.54740, 20.62290], [48.52151, 20.66809]]), {
 			opacity: 0.4,
 			errorOverlayUrl: errorOverlayUrl,
 			alt: 'Földtani térkép 100k',
 			interactive: true
-		}).addTo(map);
+		}).addTo(map100k);
 
-		var map88 = L.layerGroup([imageOverlay88]);
-		var map100k = L.layerGroup([imageOverlay100k]);
+		//var map88 = L.layerGroup([imageOverlay88]);
+		//var map100k = L.layerGroup([imageOverlay100k]);
 		var layerControl = L.control.layers(null, { "Földtani térkép 1988": map88,  "Földtani térkép 1:100k": map100k}).addTo(map);
 
 
