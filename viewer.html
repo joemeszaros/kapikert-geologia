@@ -1,75 +1,74 @@
 <head>
-  <meta charset="utf-8">
-  <title>Képek listája</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/gh/efpage/DML/lib/DML-min.js"></script>
-  <style>
-    img {
+    <meta charset="utf-8">
+    <title>Képek listája</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/gh/efpage/DML/lib/DML-min.js"></script>
+    <style>
+        img {
             width: 100px;
             height: 100px;
             margin: 2px;
             object-fit: cover;
             object-position: 50% 50%;
         }
+    </style>
+    <div id="app"></div>
+    <script>
+        const ImageViewer = (function () {
 
-  </style>
-  <div id="app"></div>
-  <script>
-      const ImageViewer = (function () {
-  
-  const range = (start, end) => Array.from('_'.repeat(end - start + 1), (_ ,i) => start + i);
-  const getElm = (id) => document.getElementById(id)
-  const urlParams = new URLSearchParams(window.location.search);
-  const cnt = urlParams.get('count');
-  const placeId = urlParams.get('id');
-  const poiType = urlParams.get('type');
-  const src = `https://github.com/joemeszaros/kapikert-geologia/blob/main/images/${poiType}/${placeId}/`
+            const range = (start, end) => Array.from('_'.repeat(end - start + 1), (_, i) => start + i);
+            const getElm = (id) => document.getElementById(id)
+            const urlParams = new URLSearchParams(window.location.search);
+            const cnt = urlParams.get('count');
+            const placeId = urlParams.get('id');
+            const poiType = urlParams.get('type');
+            const src = `https://github.com/joemeszaros/kapikert-geologia/blob/main/images/${poiType}/${placeId}/`
 
-  let i = 0, 
-      img = [], 
-      lnk = [], 
-      s = "";
+            let i = 0,
+                img = [],
+                lnk = [],
+                s = "";
 
-  const 
-    target = "_blank", 
-    title = "Kattints a képre", 
-    value = 400,
-    baseattrib = "display:block;";
-    rangeimg = range(1,cnt);
-    begin = selectBase;
-    end = unselectBase;
-
- 
-
-  function Slider () {
-    let sl = slider({ min:80, max:screen.width, value, baseattrib}); br();
-    sl.oninput = () => { 
-      rangeimg.map(v => img[v].style.height = img[v].style.width = sl.value + "px" )
-    }
-    return sl;
-  }
-
-  const start =  (parent) => {
-      begin(getElm(parent))
-        h3("Képek listája, nagyításhoz használd a csúszkát")
-        let sl = Slider();
-        rangeimg.map((val) => {
-          s = src + `${val}.JPG?raw=true`
-          begin(link("", s, {target,title}))
-            img[val] = image(s, `width:${sl.value}px;height:${sl.value}px;`)
-          end();
-        })
-      end();
-  }
-      
-  return {
-    start
-  }
-})()
-
-ImageViewer.start("app");
+            const
+                target = "_blank",
+                title = "Kattints a képre",
+                value = 400,
+                baseattrib = "display:block;";
+            rangeimg = range(1, cnt);
+            begin = selectBase;
+            end = unselectBase;
 
 
 
-  </script>  
+            function Slider() {
+                let sl = slider({ min: 80, max: screen.width, value, baseattrib }); br();
+                sl.oninput = () => {
+                    rangeimg.map(v => img[v].style.height = img[v].style.width = sl.value + "px")
+                }
+                return sl;
+            }
+
+            const start = (parent) => {
+                begin(getElm(parent))
+                h3("Képek listája, nagyításhoz használd a csúszkát")
+                let sl = Slider();
+                rangeimg.map((val) => {
+                    s = src + `${val}.JPG?raw=true`
+                    begin(link("", s, { target, title }))
+                    img[val] = image(s, `width:${sl.value}px;height:${sl.value}px;`)
+                    end();
+                })
+                end();
+            }
+
+            return {
+                start
+            }
+        })()
+
+        ImageViewer.start("app");
+
+
+
+    </script>
 </head>
