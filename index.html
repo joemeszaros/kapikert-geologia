@@ -236,6 +236,27 @@
 			attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
 		}).addTo(map);
 
+		var errorOverlayUrl = 'https://cdn-icons-png.flaticon.com/512/110/110686.png';
+
+		var imageOverlay88 = L.imageOverlay('images/overlay_88.jpg', L.latLngBounds([[48.55078, 20.62042], [48.52732, 20.65700]]), {
+			opacity: 0.4,
+			errorOverlayUrl: errorOverlayUrl,
+			alt: 'Földtani térkép 1988',
+			interactive: true
+		}).addTo(map);
+		
+		var imageOverlay100k = L.imageOverlay('images/overay_100k.png', L.latLngBounds([[48.54740, 20.62290], [48.52151, 20.66809]]), {
+			opacity: 0.4,
+			errorOverlayUrl: errorOverlayUrl,
+			alt: 'Földtani térkép 100k',
+			interactive: true
+		}).addTo(map);
+
+		var map88 = L.layerGroup([imageOverlay88]);
+		var map100k = L.layerGroup([imageOverlay100k]);
+		var layerControl = L.control.layers(null, { "Földtani térkép 1988": map88,  "Földtani térkép 1:100k": map100k}).addTo(map);
+
+
 		function onMarkerClick(e) {
 			let poi = rock_samples.find(poi => e.latlng.lat === poi.lat && e.latlng.lng === poi.long);
 			document.getElementById("footer").innerHTML = renderFooter(poi.placeId, poi.type, poi.images);
