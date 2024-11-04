@@ -80,35 +80,32 @@
 
 	<script>
 
-		var greenIcon = L.icon({
-			iconUrl: 'icons/blue-icon.png',
-			shadowUrl: 'icons/icon-shadow.png',
-			iconSize: [25, 41],
-			iconAnchor: [12, 41],
-			popupAnchor: [1, -34],
-			tooltipAnchor: [16, -28],
-			shadowSize: [41, 41]
-		});
+		function getIconDefintion(color) {
+			return L.icon({
+				iconUrl: `icons/${color}-icon.png`,
+				shadowUrl: 'icons/icon-shadow.png',
+				iconSize: [25, 41],
+				iconAnchor: [12, 41],
+				popupAnchor: [1, -34],
+				tooltipAnchor: [16, -28],
+				shadowSize: [41, 41]
+			});
+		}
 
-		var redIcon = L.icon({
-			iconUrl: 'icons/red-icon.png',
-			shadowUrl: 'icons/icon-shadow.png',
-			iconSize: [25, 41],
-			iconAnchor: [12, 41],
-			popupAnchor: [1, -34],
-			tooltipAnchor: [16, -28],
-			shadowSize: [41, 41]
-		});
+		var blueIcon = getIconDefintion("blue");
+		var redIcon = getIconDefintion("red");
+		var questionMarkIcon = getIconDefintion("question_mark");
+		var beddingIcon = getIconDefintion("bedding");
 
 		const rock_samples = [
 			{
-				placeId: 1, type: "rock", name: 'Víznyelő', lat: 48.53975, long: 20.638967, images: [
+				placeId: 1, type: "rock", formation: "derenk", name: 'Víznyelő', lat: 48.53975, long: 20.638967, images: [
 					{ ids: [1, 2, 3, 4, 5, 6, 7], description: "A víznyelő alja" },
 					{ ids: [8, 9, 10, 11, 12, 13, 14], description: "Víznyelő felett 10 méterrel hegyoldalon" }
 				]
 			},
 			{
-				placeId: 2, type: "rock", name: 'Szekérút mellett', lat: 48.538983, long: 20.6402, images: [
+				placeId: 2, type: "rock", formation: "derenk", name: 'Szekérút mellett', lat: 48.538983, long: 20.6402, images: [
 					{ ids: [1, 2, 3, 4], description: "Szekérút mellett" },
 				]
 			},
@@ -123,22 +120,17 @@
 				]
 			},
 			{
-				placeId: 5, type: "rock", name: 'Dagonya után', lat: 48.538067, long: 20.638833, images: [
+				placeId: 5, type: "rock", formation: "hallstatt", name: 'Dagonya után', lat: 48.538067, long: 20.638833, images: [
 					{ ids: [1, 2], description: "Dagonya után" },
 				]
 			},
 			{
-				placeId: 6, type: "rock", name: 'Vízszintes terep után', lat: 48.537717, long: 20.6389, images: [
-					{ ids: [1], description: "Vízszintes terep után" },
-				]
-			},
-			{
-				placeId: 7, type: "rock", name: '', lat: 48.53745, long: 20.63865, images: [
+				placeId: 7, formation: "hallstatt", type: "rock", name: '', lat: 48.53745, long: 20.63865, images: [
 					{ ids: [1, 2], description: "" },
 				]
 			},
 			{
-				placeId: 8, type: "rock", name: '', lat: 48.536417, long: 20.638417, images: [
+				placeId: 8, type: "rock", formation: "hallstatt", name: '', lat: 48.536417, long: 20.638417, images: [
 					{ ids: [1, 2], description: "" },
 				]
 			},
@@ -148,12 +140,12 @@
 				]
 			},
 			{
-				placeId: 10, type: "rock", name: '', lat: 48.535833, long: 20.637983, images: [
+				placeId: 10, type: "rock", formation: "hallstatt", name: '', lat: 48.535833, long: 20.637983, images: [
 					{ ids: [1, 2], description: "" },
 				]
 			},
 			{
-				placeId: 11, type: "rock", name: '', lat: 48.535367, long: 20.63785, images: [
+				placeId: 11, type: "rock", formation: "hallstatt", name: '', lat: 48.535367, long: 20.63785, images: [
 					{ ids: [1, 2], description: "" },
 				]
 			},
@@ -163,32 +155,32 @@
 				]
 			},
 			{
-				placeId: 13, type: "rock", name: '', lat: 48.53525, long: 20.637683, images: [
+				placeId: 13, type: "rock", formation: "hallstatt", name: '', lat: 48.53525, long: 20.637683, images: [
 					{ ids: [1, 2], description: "" },
 				]
 			},
 			{
-				placeId: 14, type: "rock", name: 'HSZF bontási törmelék', lat: 48.535082, long: 20.637198, images: [
+				placeId: 14, type: "rock", formation: "derenk", name: 'HSZF bontási törmelék', lat: 48.535082, long: 20.637198, images: [
 					{ ids: [1, 2], description: "HSZF bontási törmelék" },
 				]
 			},
 			{
-				placeId: 15, type: "rock", name: 'Rico bontási törmelék', lat: 48.534956, long: 20.637774, images: [
+				placeId: 15, type: "rock", formation: "derenk", name: 'Rico bontási törmelék', lat: 48.534956, long: 20.637774, images: [
 					{ ids: [1, 2], description: "Rico bontási törmelék" },
 				]
 			},
 			{
-				placeId: 16, type: "rock", name: 'Mocsolya völgy', lat: 48.534130, long: 20.637447, images: [
+				placeId: 16, type: "rock", formation: "derenk", name: 'Mocsolya völgy', lat: 48.534130, long: 20.637447, images: [
 					{ ids: [1, 2], description: "déli oldal" },
 				]
 			},
 			{
-				placeId: 17, type: "rock", name: 'Mocsolya völgy', lat: 48.534, long: 20.638817, images: [
+				placeId: 17, type: "rock", formation: "derenk", name: 'Mocsolya völgy', lat: 48.534, long: 20.638817, images: [
 					{ ids: [1, 2], description: "Déli oldal" },
 				]
 			},
 			{
-				placeId: 18, type: "rock", name: 'Mocsolya völgy', lat: 48.53365, long: 20.6413, images: [
+				placeId: 18, type: "rock", formation: "derenk", name: 'Mocsolya völgy', lat: 48.53365, long: 20.6413, images: [
 					{ ids: [1, 2], description: "Északi vagy déli oldal" },
 				]
 			},
@@ -198,12 +190,12 @@
 				]
 			},
 			{
-				placeId: 19, type: "rock", name: 'Mocsolya völgy', lat: 48.532833, long: 20.643617, images: [
+				placeId: 19, type: "rock", formation: "derenk", name: 'Mocsolya völgy', lat: 48.532833, long: 20.643617, images: [
 					{ ids: [1, 2], description: "Északi oldal" },
 				]
 			},
 			{
-				placeId: 20, type: "bedding", name: 'Kőzetréteg völgyperemen', lat: 48.535330, long: 20.6378, images: [
+				placeId: 20, type: "bedding", name: 'Kőzetréteg völgyperemen', lat: 48.535338, long: 20.637656, images: [
 					{ ids: [1], description: "Kőzetréteg völgyperemen" },
 				]
 			},
@@ -224,17 +216,23 @@
 			}
 		];
 
-		const map = L.map('map').setView([48.53799, 20.64044], 15);
 		// https://leaflet-extras.github.io/leaflet-providers/preview/
-		// const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		// 	maxZoom: 19,
-		// 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-		// }).addTo(map);
 
-		const tiles = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+		const openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
 			maxZoom: 20,
 			attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-		}).addTo(map);
+		});
+
+		const cyclOSMMap = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
+			maxZoom: 20,
+			attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+		});
+
+		var map = L.map('map', {
+			center: [48.53799, 20.64044],
+			zoom: 15,
+			layers: [openTopoMap, cyclOSMMap]
+		});
 
 		var errorOverlayUrl = 'https://cdn-icons-png.flaticon.com/512/110/110686.png';
 
@@ -247,7 +245,7 @@
 			alt: 'Földtani térkép 1988',
 			interactive: true
 		}).addTo(map88);
-		
+
 		var imageOverlay100k = L.imageOverlay('images/overay_100k.png', L.latLngBounds([[48.54740, 20.62290], [48.52151, 20.66809]]), {
 			opacity: 0.4,
 			errorOverlayUrl: errorOverlayUrl,
@@ -255,10 +253,10 @@
 			interactive: true
 		}).addTo(map100k);
 
-		//var map88 = L.layerGroup([imageOverlay88]);
-		//var map100k = L.layerGroup([imageOverlay100k]);
-		var layerControl = L.control.layers(null, { "Földtani térkép 1988": map88,  "Földtani térkép 1:100k": map100k}).addTo(map);
-
+		var layerControl = L.control.layers({
+			"OpenTopoMap": openTopoMap,
+			"CyclOSM": cyclOSMMap
+		}, { "Földtani térkép 1988": map88, "Földtani térkép 1:100k": map100k }).addTo(map);
 
 		function onMarkerClick(e) {
 			let poi = rock_samples.find(poi => e.latlng.lat === poi.lat && e.latlng.lng === poi.long);
@@ -301,9 +299,23 @@
 `;
 		};
 
+		function getIcon(poiType, formation) {
+			if (poiType == "rock") {
+				if (formation === "derenk") {
+					return redIcon;
+				} else if (formation === "hallstatt") {
+					return blueIcon;
+				} else {
+					return questionMarkIcon;
+				}
+			} else {
+				return beddingIcon;
+			}
+		}
+
 
 		rock_samples.forEach(function (poi) {
-			const marker = L.marker([poi.lat, poi.long], { icon: poi.type == "rock" ? greenIcon : redIcon }).addTo(map).bindPopup(renderPopup(poi.placeId, poi.name, poi.type, poi.lat, poi.long));
+			const marker = L.marker([poi.lat, poi.long], { icon: getIcon(poi.type, poi.formation) }).addTo(map).bindPopup(renderPopup(poi.placeId, poi.name, poi.type, poi.lat, poi.long));
 			marker.on('click', onMarkerClick);
 		});
 
